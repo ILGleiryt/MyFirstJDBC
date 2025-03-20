@@ -3,7 +3,7 @@ package ru.ilya.code.ApplicationJDBC;
 import java.sql.*;
 
 /**
- * Hello world!
+ * To do: Вынести логику подключения к бд в класс DbCon, a сами настройки спрятать в properties и не забыть внести их в .gitignore
  *
  */
 public class Main {
