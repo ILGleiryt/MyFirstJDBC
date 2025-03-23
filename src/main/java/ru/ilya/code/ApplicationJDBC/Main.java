@@ -7,23 +7,19 @@ import java.sql.*;
  *
  */
 public class Main {
-	public static final String User = "User";
-	public static final String url = "jdbc:mysql://localhost:3306/workers";
-	public static final String Password = "246810";
+
 	
     public static void main( String[] args ) {
-    	try(Connection conection =  DriverManager.getConnection(url, User, Password);) {
-    		
-    		String sql = "CREATE TABLE work (" +
-    				"id INT AUTO_INCREMENT PRIMARY KEY, " +
-                    "name VARCHAR(100) NOT NULL )";
+    	DbConnection dbConnect = new DbConnection();
+    	Connection connection = dbConnect.connect();
     	
-    		Statement statement = conection.createStatement();
-    		statement.executeUpdate(sql);
-    		
-    		System.out.println("Connection is open");
-    	} catch(SQLException ex) {
-    		System.out.print("Sql get wrong" + ex.getMessage());
-    	} 
+    	if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Соединение закрыто.");
+            } catch (SQLException e) {
+                System.out.println("Ошибка при закрытии соединения: " + e.getMessage());
+            }
+        }
     }
 }
